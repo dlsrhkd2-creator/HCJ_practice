@@ -109,3 +109,63 @@ document.getElementById('addBonusBtn').addEventListener('click', () => {
 //  점수에 따라 색칠 공부를 좀 하고(삼항 연산자,
 //  예쁜 HTML 카드 모양으로 포장해
 // 한줄로 합친 뒤(join), 화면에"
+
+// html 문서: 아파트 건물
+// document: 건물 1 전체
+// head, body: 각각의 층
+// div, p, span: 각 방들
+// 문자열, 속성: 방안의 가구들
+
+
+// JS는 이 아파트 관리 사무소이다. DOM이라는 것을 이용하여 어떤 방(요소)에든 접근해서 통제한다
+// 가구 이동, 벽지 변경, 새로운 방 만들기......
+
+
+// document.getElementById('price').textContent = "19,900원"; // 가격 변경
+// document.querySelector('.button').style.color = "red"; // 색상 변경
+// document.createElement('div'); // 새로운 div 태그를 만든다
+
+// DOM 특징
+// 1. 실시간 반영
+// 2. 부모 자식 관계
+// 3. 중요!! 양방향 소통(JS <-> HTML)
+//
+
+let itemCount = 0;
+
+function addItem () {
+  itemCount++;
+  updateDisplay();
+}
+
+function removeItem () {
+  if(itemCount > 0){
+    itemCount--;    
+  }
+  updateDisplay();
+}
+
+function resetCart () {
+  itemCount = 0;
+  updateDisplay();
+}
+
+function updateDisplay() {
+  const countElement = document.getElementById('count');
+  const statusElement = document.getElementById('status');
+  
+  countElement.textContent = itemCount;
+
+  if (itemCount === 0) {
+    statusElement.textContent = "장바구니가 비었습니다";
+    statusElement.style.color = 'gray';
+  } else if (itemCount < 5){
+    statusElement.textContent = "더 담으세요";
+    statusElement.style.color = 'blue';
+  } else {
+    statusElement.textContent = "무료배송이 가능합니다";
+    statusElement.style.color = 'red';
+  }
+}
+
+updateDisplay();

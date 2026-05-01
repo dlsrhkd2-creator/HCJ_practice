@@ -1,48 +1,139 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="container">
-      <h2>상품 목록</h2>
-      <div class="product">사과 - 3,000원</div>
-      <div class="product">바나나 - 2,000원</div>
-      <div class="product">오렌지 - 4,000원</div>
-      <div class="product">포도 - 5,000원</div>
-    </div>
+<head>
+ <meta charset="UTF-8">
+ <title>회원가입 폼</title>
+ <style>
+ .form-container {
+ max-width: 400px;
+ margin: 50px auto;
+ padding: 20px;
+ border: 1px solid #ddd;
+ border-radius: 8px;
+ }
+ .form-group {
+ margin-bottom: 15px;
+ }
+ label {
+ display: block;
+ margin-bottom: 5px;
+ font-weight: bold;
+ }
+ input, select, textarea {
+ width: 100%;
+ padding: 8px;
+ border: 1px solid #ccc;
+ border-radius: 4px;
+ box-sizing: border-box;
+ }
+ button {
+ background-color: #007bff;
+ color: white;
+ padding: 10px 20px;
+ border: none;
+ border-radius: 4px;
+ cursor: pointer;
+ }
+ .result {
+ margin-top: 20px;
+ padding: 10px;
+ background-color: #f8f9fa;
+ border-radius: 4px;
+ }
+ </style>
+</head>
+<body>
+ <div class="form-container">
+ <h2>회원가입</h2>
+ <form id="signupForm">
+ <div class="form-group">
+ <label for="userName">이름:</label>
+ <input type="text" id="userName" name="userName" required>
+ </div>
 
-    <button onclick="highlightProducts()">상품 강조하기</button>
+ <div class="form-group">
+ <label for="userEmail">이메일:</label>
+ <input type="email" id="userEmail" name="userEmail" required>
+ </div>
 
-    <script>
-      function highlightProducts() {
-        const container = document.querySelector('.container');
-        const products = document.querySelectorAll('.product');
+ <div class="form-group">
+ <label for="userAge">나이:</label>
+ <input type="number" id="userAge" name="userAge" min="1" max="120">
+ </div>
 
-        container.style.backgroundColor = '#f0f0f0';
-        container.style.padding = '20px';
+ <div class="form-group">
+ <label>성별:</label>
+ <input type="radio" id="male" name="gender" value="남성">
+ <label for="male" style="display: inline; margin-left: 5px;">남성</label>
+ <input type="radio" id="female" name="gender" value="여성">
+ <label for="female" style="display: inline; margin-left: 5px;">여성</label>
+ </div>
 
-        products.forEach( (product, index )=> {
-          if (index % 2 === 1) 
-          product.style.backgroundColor = '#ffeb3b'
-        });
-      }
-    </script>
-  </body>
+ <div class="form-group">
+ <label for="userCity">거주지역:</label>
+ <select id="userCity" name="userCity">
+ <option value="">선택해주세요</option>
+ <option value="서울">서울</option>
+ <option value="부산">부산</option>
+ <option value="대구">대구</option>
+ <option value="인천">인천</option>
+ </select>
+ </div>
+
+ <div class="form-group">
+ <input type="checkbox" id="agree" name="agree">
+ <label for="agree" style="display: inline; margin-left: 5px;">개인정보 처리방침에 동의합니다</label>
+ </div>
+
+ <button type="button" onclick="processForm()">가입하기</button>
+ </form>
+
+ <div id="result" class="result" style="display: none;"></div>
+ </div>
+
+ <script>
+ function processForm() {
+ // 각 입력 요소의 값 가져오기
+ const name = document.getElementById('userName').value;
+ const email = document.getElementById('userEmail').value;
+ const age = document.getElementById('userAge').value;
+ const city = document.getElementById('userCity').value;
+ const isAgreed = document.getElementById('agree').checked;
+
+ // 라디오 버튼에서 선택된 값 찾기
+ const genderRadios = document.getElementsByName('gender');
+ let gender = '';
+ for (let radio of genderRadios) {
+ if (radio.checked) {
+ gender = radio.value;
+ break;
+ }
+ }
+
+ // 유효성 검사
+ if (!name || !email) {
+ alert('이름과 이메일은 필수 입력사항입니다!');
+ return;
+ }
+
+ if (!isAgreed) {
+ alert('개인정보 처리방침에 동의해주세요!');
+ return;
+ }
+
+ // 결과 표시
+ const resultDiv = document.getElementById('result');
+ resultDiv.innerHTML = `
+ <h3>입력하신 정보</h3>
+ <p><strong>이름:</strong> ${name}</p>
+ <p><strong>이메일:</strong> ${email}</p>
+ <p><strong>나이:</strong> ${age || '입력하지 않음'}</p>
+ <p><strong>성별:</strong> ${gender || '선택하지 않음'}</p>
+ <p><strong>거주지역:</strong> ${city || '선택하지 않음'}</p>
+ <p><strong>약관동의:</strong> ${isAgreed ? '동의함' : '동의하지 않음'}</p>
+ `;
+ resultDiv.style.display = 'block';
+ }
+ </script>
+</body>
 </html>
-
-<!-- products.forEach(function (product, index)  -->
-<!-- products: 디자인을 변경할 대상이 담긴 '목록'이다 -->
-<!-- .forEach 함수: 목록에 있는 것을 하나 하나 빠짐없이 다 불러와!!! -->
-<!-- function (product, index):
- product 지금 막 바구니에서 꺼낸 '현재 대상'
- index 이 녀석이 몇 번째인지 알려주는 번호표 -->
-
-<!-- products.forEach(function(product, index) -->
-<!-- products: 디자인을 변경할 대상이 담긴 '목록' -->
-<!-- .forEach 함수 : 목록에 있는 것을 하나 하나 빠짐없이 다 불러와!!! -->
-<!-- function(product, index): 
- product 지금 막 바구니에서 꺼낸 '현재 대상' 
- index 이 녀석이 몇 번째인지 알려주는 번호표-->

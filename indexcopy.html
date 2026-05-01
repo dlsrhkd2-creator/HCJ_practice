@@ -1,0 +1,21 @@
+<!-- 데이터와 기능이 분리된 상태 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div style="text-align: center; margin-top: 50px;"> 
+    <h1>장바구니</h1>
+    <p>상품 개수: <span id="count">0</span>개</p>
+    <button onclick="addItem()">상품 추가</button>
+    <button onclick="removeItem()">상품 제거</button>
+    <button onclick="resetCart()">장바구니 비우기</button>
+    <div id="status" style="margin-top: 20px; font-weight: bold;"></div>
+  </div>
+
+  <script src="./js/test.js"></script>
+</body>
+</html>
