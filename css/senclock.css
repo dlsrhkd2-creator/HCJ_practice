@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+  background: url('../img/orange,hair,yuzuki.jpg') no-repeat center center fixed;
+  background-size: cover;
+  overflow: hidden;
+  color: white;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    transparent 0%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  z-index: -1;
+}
+
+h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.6rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 3rem;
+  opacity: 0.9;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.clock {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.clock div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.clock span {
+  width: 120px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.5rem;
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.clock span:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.clock .text {
+  width: auto;
+  height: auto;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  opacity: 0.6;
+  font-weight: 700;
+}
+
+.clock #ampm {
+  width: 60px;
+  height: 40px;
+  font-size: 1rem;
+  background: rgba(138, 43, 226, 0.2);
+  margin-top: -2.5rem; /* Adjust to align better with numbers */
+  font-weight: 900;
+}
+
+.clock #ampm:hover {
+  background: rgba(138, 43, 226, 0.3);
+}
